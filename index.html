@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café Manager - Caisse</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div>
+      <h1>☕ CAFÉ MANAGER</h1>
+      <p>Logiciel de gestion de caisse</p>
+    </div>
+    <div class="clock" id="clock"></div>
+  </header>
+
+  <nav>
+    <button class="nav-btn active" onclick="showPage('caisse',this)">Caisse</button>
+    <button class="nav-btn" onclick="showPage('produits',this)">Produits</button>
+    <button class="nav-btn" onclick="showPage('historique',this)">Historique</button>
+  </nav>
+
+  <main>
+    <!-- PAGE CAISSE -->
+    <section id="caisse" class="page active">
+      <div class="caisse-layout">
+        <div class="products-area">
+          <h2>Nos produits</h2>
+          <input id="search" placeholder="Rechercher un produit..." oninput="renderProducts()">
+          <div id="products" class="products-grid"></div>
+        </div>
+
+        <div class="cart-area">
+          <h2>🛒 Commande</h2>
+          <div id="cart" class="cart-items"></div>
+
+          <div class="total-area">
+            <span>TOTAL À PAYER</span>
+            <strong id="total">0,00 DH</strong>
+          </div>
+
+          <button class="pay-btn" onclick="finishSale()">✓ VALIDER ET IMPRIMER</button>
+          <button class="clear-btn" onclick="clearCart()">Vider la commande</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE PRODUITS -->
+    <section id="produits" class="page">
+      <h2>Gestion des produits</h2>
+      <div class="product-form">
+        <input id="productName" placeholder="Nom du produit">
+        <input id="productPrice" type="number" min="0" step="0.5" placeholder="Prix DH">
+        <button onclick="addProduct()">+ Ajouter</button>
+      </div>
+      <div id="manageProducts"></div>
+    </section>
+
+    <!-- PAGE HISTORIQUE -->
+    <section id="historique" class="page">
+      <h2>Historique des ventes</h2>
+      <div class="history-summary">
+        <div>
+          <span>Nombre de ventes</span>
+          <strong id="salesCount">0</strong>
+        </div>
+        <div>
+          <span>Chiffre d'affaires</span>
+          <strong id="salesTotal">0 DH</strong>
+        </div>
+      </div>
+      <div id="salesHistory"></div>
+    </section>
+  </main>
+
+  <div id="receipt" class="receipt"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
